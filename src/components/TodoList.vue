@@ -7,13 +7,18 @@
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
-    <div v-if="toggle">aaa</div>
+    <div v-if="toggle"><Todo /></div>
   </div>
 </template>
 
 <script>
+import Todo from "./Todo.vue";
+
 export default {
   name: "TodoList",
+  components: {
+    Todo,
+  },
   data: function() {
     return {
       newItem: "",
@@ -21,11 +26,11 @@ export default {
       todos: [
         {
           index: 1,
-          item: "aaa",
+          item: "todo1",
         },
         {
           index: 2,
-          item: "bbb",
+          item: "todo2",
         },
       ],
     };
