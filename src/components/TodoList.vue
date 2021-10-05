@@ -7,7 +7,7 @@
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
-    <div v-if="toggle"><Todo /></div>
+    <div v-if="toggle"><Todo @addTodo="saveTodo" /></div>
   </div>
 </template>
 
@@ -38,6 +38,19 @@ export default {
   methods: {
     showTodo: function() {
       this.toggle == true ? (this.toggle = false) : (this.toggle = true);
+    },
+    saveTodo: function(newItem) {
+      const newTodo = newItem;
+      if (!newTodo) {
+        return;
+      }
+      console.log(newTodo);
+      const obj = {
+        index: this.todos.length + 1,
+        item: newTodo,
+      };
+      this.todos.push(obj);
+      console.log(this.todos);
     },
   },
 };
