@@ -21,7 +21,9 @@ export default {
   components: {
     Todo,
   },
-
+  mounted() {
+    this.todos = JSON.parse(localStorage.getItem("todos")) || [];
+  },
   data: function() {
     return {
       oldTodo: "",
@@ -44,6 +46,7 @@ export default {
         return;
       }
       this.todos.push(newTodo);
+      this.setTodos();
     },
 
     deleteTodo: function(targetTodo) {
@@ -52,6 +55,10 @@ export default {
       }
       this.todos = this.todos.filter((element) => element !== targetTodo);
       this.toggle = false;
+      this.setTodos();
+    },
+    setTodos() {
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     },
   },
 };
