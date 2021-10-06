@@ -25,7 +25,7 @@ export default {
   data: function() {
     return {
       oldTodo: "",
-      toggle: true,
+      toggle: false,
       todos: ["todo1\n1", "todo2\n2"],
     };
   },
