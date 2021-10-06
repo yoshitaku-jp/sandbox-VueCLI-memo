@@ -3,7 +3,7 @@
     <h1>Todoアプリ</h1>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        <a v-on:click="showTodo(todo)">{{ todo }}</a>
+        <a v-on:click="showTodo(todo)">{{ todo.split("\n")[0] }}</a>
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
@@ -21,11 +21,12 @@ export default {
   components: {
     Todo,
   },
+
   data: function() {
     return {
       oldTodo: "",
       toggle: true,
-      todos: ["todo1", "todo2"],
+      todos: ["todo1\n1", "todo2\n2"],
     };
   },
   methods: {
@@ -46,7 +47,6 @@ export default {
     },
 
     deleteTodo: function(targetTodo) {
-      console.log(targetTodo);
       if (!targetTodo) {
         return;
       }
