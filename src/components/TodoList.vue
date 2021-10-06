@@ -26,7 +26,7 @@ export default {
     return {
       oldTodo: "",
       toggle: false,
-      todos: ["todo1\n1", "todo2\n2"],
+      todos: [],
     };
   },
   methods: {
