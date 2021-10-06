@@ -51,6 +51,7 @@ export default {
         return;
       }
       this.todos = this.todos.filter((element) => element !== targetTodo);
+      this.toggle = false;
     },
   },
 };
