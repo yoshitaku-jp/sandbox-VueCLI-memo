@@ -3,7 +3,7 @@
     <h1>Todoアプリ</h1>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        <span>{{ todo.item }}</span>
+        <span>{{ todo }}</span>
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
@@ -23,34 +23,18 @@ export default {
     return {
       newItem: "",
       toggle: true,
-      todos: [
-        {
-          index: 1,
-          item: "todo1",
-        },
-        {
-          index: 2,
-          item: "todo2",
-        },
-      ],
+      todos: ["todo1", "todo2"],
     };
   },
   methods: {
     showTodo: function() {
       this.toggle == true ? (this.toggle = false) : (this.toggle = true);
     },
-    saveTodo: function(newItem) {
-      const newTodo = newItem;
+    saveTodo: function(newTodo) {
       if (!newTodo) {
         return;
       }
-      console.log(newTodo);
-      const obj = {
-        index: this.todos.length + 1,
-        item: newTodo,
-      };
-      this.todos.push(obj);
-      console.log(this.todos);
+      this.todos.push(newTodo);
     },
   },
 };

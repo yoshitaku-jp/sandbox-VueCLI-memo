@@ -1,7 +1,7 @@
 <template>
   <div class="todo">
     <form v-on:submit.prevent>
-      <input type="text" v-model="newItem" />
+      <input type="text" v-model="newTodo" />
       <button v-on:click="saveTodo">編集</button>
       <button v-on:click="deleteTodo">削除</button>
     </form>
@@ -13,12 +13,12 @@ export default {
   name: "Todo",
   data: function() {
     return {
-      newItem: "",
+      newTodo: "",
     };
   },
   methods: {
     saveTodo: function() {
-      this.$emit("addTodo", this.newItem);
+      this.$emit("addTodo", this.newTodo);
       this.newTodo = "";
     },
   },
