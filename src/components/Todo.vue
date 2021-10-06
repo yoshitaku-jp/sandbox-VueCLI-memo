@@ -1,7 +1,8 @@
 <template>
   <div class="todo">
     <form v-on:submit.prevent>
-      <input type="text" v-model="todo" />
+      <textarea type="text" v-model="todo" />
+      <input type="hidden" v-model="oldTodo" />
       <button v-on:click="saveTodo">編集</button>
       <button v-on:click="deleteTodo">削除</button>
     </form>
@@ -14,10 +15,19 @@ export default {
   data: function() {
     return {
       todo: "",
+      oldTodo: "",
     };
+  },
+  props: ["value"],
+  mounted() {
+    this.todo = this.value.oldTodo;
+    this.oldTodo = this.value.oldTodo;
   },
   methods: {
     saveTodo: function() {
+      if (this.oldTodo != "") {
+        this.$emit("delTodo", this.oldTodo);
+      }
       this.$emit("addTodo", this.todo);
       this.todo = "";
     },

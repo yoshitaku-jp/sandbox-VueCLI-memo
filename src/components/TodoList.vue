@@ -3,11 +3,13 @@
     <h1>Todoアプリ</h1>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        <span>{{ todo }}</span>
+        <a v-on:click="showTodo(todo)">{{ todo }}</a>
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
-    <div v-if="toggle"><Todo @addTodo="saveTodo" @delTodo="deleteTodo" /></div>
+    <div v-if="toggle">
+      <Todo :value="{ oldTodo }" @addTodo="saveTodo" @delTodo="deleteTodo" />
+    </div>
   </div>
 </template>
 
@@ -21,14 +23,19 @@ export default {
   },
   data: function() {
     return {
-      newItem: "",
+      oldTodo: "",
       toggle: true,
       todos: ["todo1", "todo2"],
     };
   },
   methods: {
-    showTodo: function() {
+    showTodo: function(todo = "") {
       this.toggle == true ? (this.toggle = false) : (this.toggle = true);
+      if (typeof todo === "object") {
+        this.oldTodo = "";
+      } else {
+        this.oldTodo = todo;
+      }
     },
 
     saveTodo: function(newTodo) {
