@@ -8,18 +8,22 @@
     </ul>
     <button @click="showTodo">＋</button>
     <div v-if="isVisible">
-      <Todo :value="{ oldTodo }" @addTodo="saveTodo" @delTodo="deleteTodo" />
+      <TodoItem
+        :value="{ oldTodo }"
+        @addTodo="saveTodo"
+        @delTodo="deleteTodo"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Todo from "./Todo.vue";
+import TodoItem from "./TodoItem.vue";
 
 export default {
   name: "TodoList",
   components: {
-    Todo,
+    TodoItem,
   },
   mounted() {
     this.todos = JSON.parse(localStorage.getItem("todos")) || [];
