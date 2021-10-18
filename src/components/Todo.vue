@@ -12,7 +12,7 @@
 <script>
 export default {
   name: "Todo",
-  data: function() {
+  data() {
     return {
       todo: "",
       oldTodo: "",

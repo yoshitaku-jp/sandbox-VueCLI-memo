@@ -24,7 +24,7 @@ export default {
   mounted() {
     this.todos = JSON.parse(localStorage.getItem("todos")) || [];
   },
-  data: function() {
+  data() {
     return {
       oldTodo: "",
       toggle: false,
