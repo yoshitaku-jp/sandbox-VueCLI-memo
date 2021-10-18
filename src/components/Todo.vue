@@ -18,7 +18,9 @@ export default {
       oldTodo: "",
     };
   },
-  props: ["value"],
+  props: {
+    value: String,
+  },
   mounted() {
     this.todo = this.value.oldTodo;
     this.oldTodo = this.value.oldTodo;
