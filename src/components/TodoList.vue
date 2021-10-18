@@ -7,7 +7,7 @@
       </li>
     </ul>
     <button v-on:click="showTodo">＋</button>
-    <div v-if="toggle">
+    <div v-if="isVisible">
       <Todo :value="{ oldTodo }" @addTodo="saveTodo" @delTodo="deleteTodo" />
     </div>
   </div>
@@ -27,13 +27,15 @@ export default {
   data() {
     return {
       oldTodo: "",
-      toggle: false,
+      isVisible: false,
       todos: [],
     };
   },
   methods: {
     showTodo: function(todo = "") {
-      this.toggle == true ? (this.toggle = false) : (this.toggle = true);
+      this.isVisible = !this.isVisible
+        ? (this.isVisible = false)
+        : (this.isVisible = true);
       if (typeof todo === "object") {
         this.oldTodo = "";
       } else {
@@ -54,7 +56,7 @@ export default {
         return;
       }
       this.todos = this.todos.filter((element) => element !== targetTodo);
-      this.toggle = false;
+      this.isVisible = false;
       this.setTodos();
     },
     setTodos() {
