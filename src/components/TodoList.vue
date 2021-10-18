@@ -3,10 +3,10 @@
     <h1>Todoアプリ</h1>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        <a v-on:click="showTodo(todo)">{{ todo.split("\n")[0] }}</a>
+        <a @click="showTodo(todo)">{{ todo.split("\n")[0] }}</a>
       </li>
     </ul>
-    <button v-on:click="showTodo">＋</button>
+    <button @click="showTodo">＋</button>
     <div v-if="isVisible">
       <Todo :value="{ oldTodo }" @addTodo="saveTodo" @delTodo="deleteTodo" />
     </div>

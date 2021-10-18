@@ -1,10 +1,10 @@
 <template>
   <div class="todo">
-    <form v-on:submit.prevent>
+    <form @submit.prevent>
       <textarea type="text" v-model="todo" />
       <input type="hidden" v-model="oldTodo" />
-      <button v-on:click="saveTodo">編集</button>
-      <button v-on:click="deleteTodo">削除</button>
+      <button @click="saveTodo">編集</button>
+      <button @click="deleteTodo">削除</button>
     </form>
   </div>
 </template>
