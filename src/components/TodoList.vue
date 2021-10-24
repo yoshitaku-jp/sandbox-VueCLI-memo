@@ -33,6 +33,7 @@ export default {
       oldTodo: "",
       isVisible: false,
       todos: [],
+      defaultMemo: "新規メモ",
     };
   },
   methods: {
@@ -42,7 +43,7 @@ export default {
         this.isVisible = false;
       }
       if (typeof todo === "object") {
-        this.oldTodo = "";
+        this.oldTodo = this.defaultMemo;
       } else {
         this.oldTodo = todo;
       }
