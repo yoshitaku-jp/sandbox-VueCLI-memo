@@ -36,10 +36,11 @@ export default {
     };
   },
   methods: {
-    showTodo: function(todo = "") {
-      this.isVisible = !this.isVisible
-        ? (this.isVisible = false)
-        : (this.isVisible = true);
+      if (this.isVisible == false) {
+        this.isVisible = true;
+      } else {
+        this.isVisible = false;
+      }
       if (typeof todo === "object") {
         this.oldTodo = "";
       } else {
