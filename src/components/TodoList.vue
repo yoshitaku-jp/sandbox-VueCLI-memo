@@ -3,13 +3,13 @@
     <h1>Todoアプリ</h1>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        <a @click="showTodo(todo)">{{ todo.split("\n")[0] }}</a>
+        <a @click="showTodo(todo, index)">{{ todo.split("\n")[0] }}</a>
       </li>
     </ul>
     <button @click="showTodo">＋</button>
     <div v-if="isVisible">
       <TodoItem
-        :value="{ oldTodo }"
+        :value="{ oldTodo, index }"
         @addTodo="saveTodo"
         @delTodo="deleteTodo"
       />
@@ -37,11 +37,14 @@ export default {
     };
   },
   methods: {
+    showTodo: function(todo = "", index = "") {
       if (this.isVisible == false) {
         this.isVisible = true;
       } else {
         this.isVisible = false;
       }
+
+      this.index = index;
       if (typeof todo === "object") {
         this.oldTodo = this.defaultMemo;
       } else {
@@ -57,14 +60,15 @@ export default {
       this.setTodos();
     },
 
-    deleteTodo: function(targetTodo) {
-      if (!targetTodo) {
+    deleteTodo: function(targetIndex) {
+      if (!targetIndex) {
         return;
       }
-      this.todos = this.todos.filter((element) => element !== targetTodo);
+      this.todos.splice(targetIndex, 1);
       this.isVisible = false;
       this.setTodos();
     },
+
     setTodos() {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },

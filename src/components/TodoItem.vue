@@ -24,17 +24,18 @@ export default {
   mounted() {
     this.todo = this.value.oldTodo;
     this.oldTodo = this.value.oldTodo;
+    this.index = this.value.index;
   },
   methods: {
     saveTodo: function() {
       if (this.oldTodo != "") {
-        this.$emit("delTodo", this.oldTodo);
+        this.$emit("delTodo", this.index);
       }
       this.$emit("addTodo", this.todo);
       this.todo = "";
     },
     deleteTodo: function() {
-      this.$emit("delTodo", this.todo);
+      this.$emit("delTodo", this.index);
       this.todo = "";
     },
   },
