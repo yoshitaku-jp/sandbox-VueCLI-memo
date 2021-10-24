@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     showTodo: function(todo = "", index = "") {
-      if (this.isVisible == false) {
+      if (this.isVisible === false) {
         this.isVisible = true;
       } else {
         this.isVisible = false;
