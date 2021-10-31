@@ -37,7 +37,7 @@ export default {
     };
   },
   methods: {
-    showTodo: function(todo = "", index = "") {
+    showTodo(todo = "", index = "") {
       if (!this.isVisible) {
         this.isVisible = true;
       }
@@ -50,7 +50,7 @@ export default {
       }
     },
 
-    saveTodo: function(newTodo) {
+    saveTodo(newTodo) {
       if (!newTodo) {
         return;
       }
@@ -58,7 +58,7 @@ export default {
       this.setTodos();
     },
 
-    deleteTodo: function(targetIndex) {
+    deleteTodo(targetIndex) {
       if (!targetIndex) {
         return;
       }

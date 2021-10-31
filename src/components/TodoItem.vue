@@ -27,14 +27,14 @@ export default {
     this.index = this.value.index;
   },
   methods: {
-    saveTodo: function() {
+    saveTodo() {
       if (this.oldTodo != "") {
         this.$emit("delTodo", this.index);
       }
       this.$emit("addTodo", this.todo);
       this.todo = "";
     },
-    deleteTodo: function() {
+    deleteTodo() {
       this.$emit("delTodo", this.index);
       this.todo = "";
     },
