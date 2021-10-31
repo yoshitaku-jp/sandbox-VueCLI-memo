@@ -55,6 +55,7 @@ export default {
         return;
       }
       this.todos.push(newTodo);
+      this.isVisible = false;
       this.setTodos();
     },
 
