@@ -16,6 +16,7 @@ export default {
     return {
       todo: "",
       oldTodo: "",
+      index: "",
     };
   },
   props: {
@@ -34,7 +35,7 @@ export default {
       this.$emit("addTodo", this.todo);
       this.todo = "";
     },
-    deleteTodo() {
+    deleteTodo: function() {
       this.$emit("delTodo", this.index);
       this.todo = "";
     },
