@@ -1,0 +1,77 @@
+<template>
+  <div class="todolist">
+    <h1>Todoアプリ</h1>
+    <ul>
+      <li v-for="(todo, index) in todos" :key="index">
+        <a @click="showTodo(todo, index)">{{ todo.split("\n")[0] }}</a>
+      </li>
+    </ul>
+    <button @click="showTodo">＋</button>
+    <div v-if="isVisible">
+      <TodoItem
+        :targetTodo="todo"
+        :targetIndex="index"
+        @addTodo="saveTodo"
+        @delTodo="deleteTodo"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import TodoItem from "./TodoItem.vue";
+
+export default {
+  name: "TodoList",
+  components: {
+    TodoItem,
+  },
+  mounted() {
+    this.todos = JSON.parse(localStorage.getItem("todos")) || [];
+  },
+  data() {
+    return {
+      isVisible: false,
+      todos: [],
+      defaultMemo: "新規メモ",
+    };
+  },
+  methods: {
+    showTodo(todo = "", index = "") {
+      if (!this.isVisible) {
+        this.isVisible = true;
+      }
+      this.index = index;
+      if (typeof todo === "object") {
+        this.todo = this.defaultMemo;
+      } else {
+        this.todo = todo;
+      }
+    },
+
+    saveTodo(newTodo, targetIndex = "") {
+      if (!newTodo) {
+        return;
+      }
+      if (targetIndex !== "") {
+        this.todos.splice(targetIndex, 1, newTodo);
+      } else {
+        this.todos.push(newTodo);
+      }
+
+      this.isVisible = false;
+      this.setTodos();
+    },
+
+    deleteTodo(targetIndex) {
+      this.todos.splice(targetIndex, 1);
+      this.isVisible = false;
+      this.setTodos();
+    },
+
+    setTodos() {
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+  },
+};
+</script>
