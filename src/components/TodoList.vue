@@ -9,7 +9,8 @@
     <button @click="showTodo">＋</button>
     <div v-if="isVisible">
       <TodoItem
-        :value="{ oldTodo, index }"
+        :targetTodo="todo"
+        :targetIndex="index"
         @addTodo="saveTodo"
         @delTodo="deleteTodo"
       />
@@ -30,7 +31,6 @@ export default {
   },
   data() {
     return {
-      oldTodo: "",
       isVisible: false,
       todos: [],
       defaultMemo: "新規メモ",
@@ -41,28 +41,29 @@ export default {
       if (!this.isVisible) {
         this.isVisible = true;
       }
-
       this.index = index;
       if (typeof todo === "object") {
-        this.oldTodo = this.defaultMemo;
+        this.todo = this.defaultMemo;
       } else {
-        this.oldTodo = todo;
+        this.todo = todo;
       }
     },
 
-    saveTodo(newTodo) {
+    saveTodo(newTodo, targetIndex = "") {
       if (!newTodo) {
         return;
       }
-      this.todos.push(newTodo);
+      if (targetIndex !== "") {
+        this.todos.splice(targetIndex, 1, newTodo);
+      } else {
+        this.todos.push(newTodo);
+      }
+
       this.isVisible = false;
       this.setTodos();
     },
 
     deleteTodo(targetIndex) {
-      if (!targetIndex) {
-        return;
-      }
       this.todos.splice(targetIndex, 1);
       this.isVisible = false;
       this.setTodos();
